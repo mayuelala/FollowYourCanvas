@@ -1,5 +1,5 @@
 <div align="center">
-<h2><font color="red"> Follow-Your-Canvas 🖌: </font></center> <br> <center>Higher-Resolution Video Outpainting with Extensive Content Generation</h2>
+<h2><font color="red"> Follow-Your-Canvas 🖼 : </font></center> <br> <center>Higher-Resolution Video Outpainting with Extensive Content Generation</h2>
 
 [Qihua Chen*](https://scholar.google.com/citations?user=xjWP9gEAAAAJ&hl=en), [Yue Ma*](https://github.com/mayuelala), [Hongfa Wang*](https://scholar.google.com.hk/citations?user=q9Fn50QAAAAJ&hl=zh-CN), [Junkun yuan*✉️](https://scholar.google.com/citations?user=j3iFVPsAAAAJ&hl=zh-CN), 
 
