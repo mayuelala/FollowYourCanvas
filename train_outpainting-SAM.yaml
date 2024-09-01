@@ -1,0 +1,118 @@
+output_dir: "outputs"
+pretrained_model_path: "Your_path/huggingface_models/StableDiffusion/stable-diffusion-2-1/"
+
+motion_pretrained_model_path: 'Your_path/outpainting_ckpt/checkpoint-40000.ckpt' # or checkpoint-35000.ckpt
+load_ckpt_full: true
+
+dataset_name: 'panda-70M'
+
+unet_additional_kwargs:
+  use_motion_module              : true
+  motion_module_resolutions      : [ 1,2,4,8 ]
+  unet_use_cross_frame_attention : false
+  unet_use_temporal_attention    : false
+  use_linear_projection          : true
+  use_inflated_groupnorm         : true
+  motion_module_mid_block        : true
+  use_fps_condition              : true
+  use_temporal_conv              : false
+  use_relative_postions          : "WithAdapter"
+  use_ip_plus_cross_attention    : true
+  ip_plus_condition              : 'video'
+  num_tokens                     : 64
+  use_adapter_temporal_projection: true
+  compress_video_features        : true
+  image_hidden_size              : 256 #SAM
+  
+  use_outpaint: True  
+  motion_module_type: Vanilla
+  motion_module_kwargs:
+    num_attention_heads                : 8
+    num_transformer_block              : 1
+    attention_block_types              : [ "Temporal_Self", "Temporal_Self" ]
+    temporal_position_encoding         : true
+    temporal_position_encoding_max_len : 64 
+    temporal_attention_dim_div         : 1
+    zero_initialize                    : true
+
+noise_scheduler_kwargs:
+  num_train_timesteps: 1000
+  beta_start:          0.00085
+  beta_end:            0.012
+  beta_schedule:       "linear"
+  steps_offset:        1
+  clip_sample:         false
+  prediction_type:     "v_prediction"
+  rescale_betas_zero_snr: true
+
+train_data:
+  csv_path:
+    - "Your_path/artlist_26w/scripts/artlist_26w_info.csv"
+  video_folder: 
+    - "Your_path/artlist_26w/videos_compress" 
+
+  sample_size:
+    - 1440
+    - 2560
+  sample_stride  : 4
+
+  sample_n_frames: 64
+
+  dynamic_fps    : True
+
+  muti_scale_training: false 
+  anchor_target_sampling:
+    target_size:
+      - 512
+      - 512
+    overlap_ratio  : [0.1, 1, -0.1, 1] # [min_overlap_h, max_overlap_h, min_overlap_w, max_overlap_w] relative to anchor size
+    dynamic_anchor_size: true
+    anchor_size:
+      - 1440
+      - 512
+      - 1440
+      - 512
+  get_SAM_anchor_image: true
+
+trainable_modules:
+  - "_ip"
+  - "image_proj_model"   
+  - "add_cond_embedding"
+  - "motion_modules."
+  - "fps"
+  - "temporal"
+  - "conv_in"
+
+learning_rate:    1.e-5
+num_workers: 16 
+
+train_batch_size: 1  
+
+max_train_steps: 50000  
+lr_scheduler: 'cosine'  
+lr_warmup_steps: 1000 
+
+checkpointing_steps:  5000
+
+global_seed: -1  
+mixed_precision_training: true
+enable_xformers_memory_efficient_attention: True
+gradient_checkpointing: True
+
+use_temporal_multi_scale_training: False
+use_fps_condition: true
+use_spatial_temporal_separate_lr: true
+separate_lr_ratio: [2, 0]
+
+is_debug: False
+
+use_outpaint: true
+
+evaluation: false
+
+cfg_random_null_text_ratio: 0.1
+use_ip_plus_cross_attention: true
+ip_plus_condition: 'video'
+cfg_random_null_image: true
+image_encoder_name : 'SAM'
+image_pretrained_model_path : "Your_path/sam_vit_b_01ec64.pth" # ViT-B/16

@@ -1,0 +1,81 @@
+output_dir: "infer"
+pretrained_model_path: "YOUR_PATH/huggingface_models/StableDiffusion/stable-diffusion-2-1/"
+
+motion_pretrained_model_path: 'YOUR_PATH/outpainting_ckpt/checkpoint-40000.ckpt' # or checkpoint-35000.ckpt
+lmm_path: 'YOUR_PATH/qwen/Qwen-VL-Chat'
+
+unet_additional_kwargs:
+  use_motion_module              : true
+  motion_module_resolutions      : [ 1,2,4,8 ]
+  unet_use_cross_frame_attention : false
+  unet_use_temporal_attention    : false
+  use_linear_projection          : true
+  use_inflated_groupnorm         : true
+  motion_module_mid_block        : true
+  use_fps_condition              : true
+  use_temporal_conv              : false
+  use_relative_postions          : "WithAdapter"
+  use_ip_plus_cross_attention    : true
+  ip_plus_condition              : 'video'
+  num_tokens                     : 64
+  use_adapter_temporal_projection: true
+  compress_video_features        : true
+  image_hidden_size              : 256 #SAM
+  
+  use_outpaint: True 
+
+  motion_module_type: Vanilla
+  motion_module_kwargs:
+    num_attention_heads                : 8
+    num_transformer_block              : 1
+    attention_block_types              : [ "Temporal_Self", "Temporal_Self" ]
+    temporal_position_encoding         : true
+    temporal_position_encoding_max_len : 64  # yjk: default 32
+    temporal_attention_dim_div         : 1
+    zero_initialize                    : true
+
+noise_scheduler_kwargs:
+  num_train_timesteps: 1000
+  beta_start:          0.00085
+  beta_end:            0.012
+  beta_schedule:       "linear"
+  steps_offset:        1
+  clip_sample:         false
+  prediction_type:     "v_prediction"
+  rescale_betas_zero_snr: true
+
+anchor_target_sampling:
+  target_size:
+    - 512
+    - 512
+
+validation_data:
+  num_inference_steps: 40
+  guidance_scale_text: 8.
+  guidance_scale_adapter: -1
+  multi_diff: true
+validate_overlap: [0.8, 0.4, 0.1, -0.1]
+
+validation_number: 1000
+start_index: 0
+
+video_dir: 'YOUR_PATH/data/480p_input_025'
+
+global_seed: -1  # yjk: outpaint
+enable_xformers_memory_efficient_attention: True
+use_fps_condition: true
+
+# yjk: outpaint
+use_outpaint: true
+
+use_ip_plus_cross_attention: true
+ip_plus_condition: 'video'
+image_encoder_name : 'SAM'
+image_pretrained_model_path : "YOUR_PATH/sam_vit_b_01ec64.pth" # ViT-B/16
+
+target_size: 
+  - 512
+  - 512
+min_overlap:
+  - 256
+  - 64
