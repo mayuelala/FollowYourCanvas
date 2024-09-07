@@ -5,7 +5,7 @@
 
 [Wenzhe Zhao](https://github.com/mayuelala/FollowYourCanvas), [Qi Tian](https://github.com/mayuelala/FollowYourCanvas), [Hongmei Wang](https://github.com/mayuelala/FollowYourCanvas),[Shaobo Min](https://github.com/mayuelala/FollowYourCanvas), [Qifeng Chen](https://cqf.io), and [Wei Liu✉️](https://scholar.google.com/citations?user=AjxoEpIAAAAJ&hl=zh-CN)
 
-<a href='https://arxiv.org/abs/2304.01186'><img src='https://img.shields.io/badge/ArXiv-2304.01186-red'></a> 
+<a href='https://arxiv.org/abs/2409.01055'><img src='https://img.shields.io/badge/ArXiv-2409.01055-red'></a> 
 <a href='https://follow-your-canvas.github.io/'><img src='https://img.shields.io/badge/Project-Page-Green'></a>  ![visitors](https://visitor-badge.laobi.icu/badge?page_id=mayuelala.FollowYourCanvas&left_color=green&right_color=red)  [![GitHub](https://img.shields.io/github/stars/mayuelala/FollowYourCanvas?style=social)](https://github.com/mayuelala/FollowYourCanvas) 
 </div>
 
