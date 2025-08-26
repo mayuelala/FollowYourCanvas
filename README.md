@@ -26,9 +26,10 @@ Follow-Your-Canvas enables higher-resolution video outpainting with rich content
 
 ## 🛠️ Environment
 Before running the code, make sure you have setup the environment and installed the required packages.
-Since the outpainting window is 512*512*64 each time, you need a GPU with at least 60G memory for both training and inference.
+Since the outpainting window is 512×512×64 each time, you need a GPU with at least 60G memory for both training and inference.
 
-1. Install python packages
+### 1. Install python packages
+
 If you have Docker installed, docker compose is the easiest way to use the code.
 ```bash
 docker compose run --remove-orphans follow-your-canvas
@@ -40,7 +41,8 @@ Or you can also install packages manually.
 pip install -r requirements.txt
 ```
 
-2. Download models
+### 2. Download models
+
 Download our checkpoints [here](https://drive.google.com/file/d/1CIiEYxo6Sfe0NSTr14_W9gSKePVsyIlQ/view?usp=drive_link).  
 
 You also need to download [[sam_vit_b_01ec64](https://github.com/facebookresearch/segment-anything/tree/main?tab=readme-ov-file#model-checkpoints)], [[stable-diffusion-2-1](https://huggingface.co/stabilityai/stable-diffusion-2-1)], and [[Qwen-VL-Chat](https://huggingface.co/Qwen/Qwen-VL-Chat)].
