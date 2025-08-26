@@ -632,7 +632,7 @@ class UNet3DConditionModel(ModelMixin, ConfigMixin):
         if not os.path.isfile(model_file):
             raise RuntimeError(f"{model_file} does not exist")
         
-        state_dict = torch.load(model_file, map_location="cpu")
+        state_dict = torch.load(model_file, map_location="cpu", weights_only=False)
 
         if 'use_outpaint' in unet_additional_kwargs:
             model.conv_in.weight.data.zero_()

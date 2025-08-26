@@ -172,7 +172,7 @@ def main(
         logging.info(f"from motion pretreained checkpoint: {motion_pretrained_model_path}")
     
         # motion model keys: 'epoch', 'global_step', 'state_dict'
-        motion_pretrained_model_path = torch.load(motion_pretrained_model_path, map_location="cpu")
+        motion_pretrained_model_path = torch.load(motion_pretrained_model_path, map_location="cpu", weights_only=False)
 
         if "global_step" in motion_pretrained_model_path: zero_rank_print(f"global_step: {motion_pretrained_model_path['global_step']}")
         state_dict = motion_pretrained_model_path["state_dict"] if "state_dict" in motion_pretrained_model_path else motion_pretrained_model_path
